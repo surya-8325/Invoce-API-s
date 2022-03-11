@@ -1,6 +1,7 @@
 const { response } = require('express');
 const express= require('express');
 const  mysql2= require('mysql2');
+const PORT=process.env.PORT || 3000
 const app=express()
 app.use(express.json())
 const  connection=mysql2.createConnection({
@@ -23,7 +24,7 @@ connection.connect((err)=>{
 
 const initialiseServer=()=>{
     try{
-        app.listen(3000,()=>{
+        app.listen(PORT,()=>{
             console.log("server started")
         })
     }
@@ -35,7 +36,7 @@ const initialiseServer=()=>{
 app.get("/",async(req,res)=>{
     connection.query("SELECT * FROM shop_details",(err,result)=>{
         console.log(result)
-        res.send(result)
+        res.status(200).send(result)
     })
     
 })
