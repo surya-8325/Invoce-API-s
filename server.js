@@ -40,16 +40,24 @@ app.get("/",async(req,res)=>{
     try {
         response.status(200).send(result)
     }
+    catch(err){
+        console.log(err,"server error")
+    }
     
 })
 app.post("/addShop",async(req,res)=>{
     const {name,address,contact_number,email_id}=req.body
     const lengthQuery="SELECT * FROM shop_details"
     const result1=await connection.promise().query(lengthQuery)
+    const checkBuyerQuery=`SELECT * FROM shop_details WHERE name='${name}'`
+    const result2=await connection.promise().query(checkBuyerQuery)
+    if (result2){
+        res.status(200).send("Shop Already Exists")
+    }
     const count=result1.length+1
     const queries=`INSERT INTO shop_details (shop_id,shop_name,shop_address,shop_contact_number,email_id)  VALUES (${count},'${name}','${address}',${contact_number},'${email_id}')`
-    const result2=await connection.promise().query(queries)
     try{
+        const result3=await connection.promise().query(queries)
         res.status(200).send("Successfully added")
     }
     catch(err){
