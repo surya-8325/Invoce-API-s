@@ -6,9 +6,10 @@ const app=express()
 app.use(express.json())
 const  connection=mysql2.createConnection({
 
-    host: 'localhost',
-    user:'root',
-    password:'130302#Ss',
+    host: 'mysql-71954-0.cloudclusters.net',
+    port:"19882 ",
+    user:'surya',
+    password:'Sr6304403720@',
     database:'surya'
 });
 
