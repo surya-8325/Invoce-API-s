@@ -56,8 +56,9 @@ app.post("/addShop",async(req,res)=>{
     }
     const count=result1.length+1
     const queries=`INSERT INTO shop_details (shop_id,shop_name,shop_address,shop_contact_number,email_id)  VALUES (${count},'${name}','${address}',${contact_number},'${email_id}')`
+    const result3=await connection.promise().query(queries)
     try{
-        const result3=await connection.promise().query(queries)
+        
         res.status(200).send("Successfully added")
     }
     catch(err){
