@@ -1,4 +1,5 @@
 const { response } = require('express');
+const moment=require("moment")
 const express= require('express');
 const  mysql2= require('mysql2');
 const PORT=process.env.PORT || 3000
@@ -46,6 +47,8 @@ app.get("/",async(req,res)=>{
     
 })
 app.post("/addShop",async(req,res)=>{
+ 
+
     const {name,address,contact_number,email_id}=req.body
     const lengthQuery="SELECT * FROM shop_details"
     const result1=await connection.promise().query(lengthQuery)
@@ -68,8 +71,10 @@ app.post("/addShop",async(req,res)=>{
 })
 app.post("/addItems",async(req,res)=>{
     let buyer_id=0
-    const {buyer_name,buyer_contact_number,date_time_of_transaction,items}=req.body
-    const lengthQuery=`select buyer_id from items where buyer_name='${buyer_name}'`
+    let x=new Date()
+    const {buyer_name,buyer_contact_number,items}=req.body
+    const date_time_of_transaction=moment(x). format('YYYY-MM-DD HH:MM:SS')
+const lengthQuery=`select buyer_id from items where buyer_name='${buyer_name}'`
     const result=await connection.promise().query(lengthQuery)
     if (result[0].length!=0){
         buyer_id=result[0][0].buyer_id
