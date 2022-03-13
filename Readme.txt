@@ -23,7 +23,7 @@ The format required for sending the details of invoice details is as follows
 {
     "buyer_name":" ", #name of the buyer
     "buyer_contact_number":,#contact number of the buyer
-    "items":[] #An array of items where each element of array is an object of the format mentioned below,
+    "items":[], #An array of items where each element of array is an object of the format mentioned below,
     "total_amt":1200
 
 }
