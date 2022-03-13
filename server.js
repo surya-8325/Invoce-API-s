@@ -73,7 +73,7 @@ app.post("/addItems",async(req,res)=>{
     let buyer_id=0
     let x=new Date()
     const {buyer_name,buyer_contact_number,items}=req.body
-    const date_time_of_transaction=moment(x). format('YYYY-MM-DD HH:MM:SS')
+    const date_time_of_transaction=moment(x).format('YYYY-MM-DD HH:MM:SS')
 const lengthQuery=`select buyer_id from items where buyer_name='${buyer_name}'`
     const result=await connection.promise().query(lengthQuery)
     if (result[0].length!=0){
