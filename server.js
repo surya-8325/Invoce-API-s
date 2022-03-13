@@ -35,10 +35,11 @@ const initialiseServer=()=>{
 }
 
 app.get("/",async(req,res)=>{
-    connection.query("SELECT * FROM shop_details",(err,result)=>{
-        console.log(result)
-        res.status(200).send(result)
-    })
+    const getShopsQueries="SELECT * FROM shop_details"
+    const result=await connection.promise().query(getShopsQueries)
+    try {
+        response.status(200).send(result)
+    }
     
 })
 app.post("/addShop",async(req,res)=>{
