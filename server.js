@@ -89,14 +89,13 @@ const lengthQuery=`select buyer_id from items where buyer_name='${buyer_name}'`
         const {item_name,quantity,price,discount,gst,item_total_amt}=x
        
         const addItemsQueries=`INSERT INTO items (buyer_id,buyer_name,buyer_contact_number,date_time_of_transaction,item_name,quantity,price,discount,gst,item_total_amt,status) VALUES (${buyer_id},'${buyer_name}',${buyer_contact_number},'${date_time_of_transaction}','${item_name}',${quantity},${price},${discount},${gst},${item_total_amt},"unpaid")`
-        const result1=await connection.promise().query(addItemsQueries)
-        try{
-            res.status(200).send("Successfully added Items")
-        }
-        catch(err){
-            console.log(err)
-        }
-        
+        const result1=await connection.promise().query(addItemsQueries)     
+    }
+    try{
+        res.status(200).send("Successfully added Items")
+    }
+    catch(err){
+        console.log(err)
     }
 })
 
